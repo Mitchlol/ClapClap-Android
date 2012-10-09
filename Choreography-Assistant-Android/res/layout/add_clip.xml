@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<EditText 
+	android:id="@+id/title"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:hint="clip title"
+	/>
+    <EditText 
+	android:id="@+id/start"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:hint="starting point in ms"
+	android:inputType="number"
+	/>
+	<EditText 
+	android:id="@+id/stop"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:hint="ending point in ms"
+	android:inputType="number"
+	/>
+	
+	<Button
+	android:id="@+id/save"
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:text="save"
+	/>
+</LinearLayout>
