@@ -4,15 +4,18 @@ import java.io.IOException;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnSeekCompleteListener;
 import android.os.Bundle;
-import com.MitchellLustig.ChoreographyAssistantAndroid.R;
+
+import com.MitchellLustig.ChoreographyAssistantAndroid.MusicG.DetectorThread;
+import com.MitchellLustig.ChoreographyAssistantAndroid.MusicG.OnSignalsDetectedListener;
+import com.MitchellLustig.ChoreographyAssistantAndroid.MusicG.RecorderThread;
 
 public class PlaySongClip extends BaseActivity {
 	String file;
 	long start, stop;
 	
 	MediaPlayer mMediaPlayer;
+	SongMonitorThread mSongMonitorThread;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,7 +37,18 @@ public class PlaySongClip extends BaseActivity {
 //				}
 //			});
 			mMediaPlayer.seekTo((int)start);
-			mMediaPlayer.start();
+			//mMediaPlayer.start();
+			
+			RecorderThread recorderThread = new RecorderThread();
+			recorderThread.start();
+			DetectorThread detectorThread = new DetectorThread(recorderThread);
+			detectorThread.setOnSignalsDetectedListener(new OnSignalsDetectedListener() {		
+				public void onWhistleDetected() {
+					mMediaPlayer.start();
+				}
+			});
+			detectorThread.start();
+			
 			//mMediaPlayer.pause();
 			//mMediaPlayer.seekTo((int)start);
 			
@@ -50,13 +64,41 @@ public class PlaySongClip extends BaseActivity {
 			e.printStackTrace();
 		}
 		
-		
+		mSongMonitorThread = new SongMonitorThread();
+		mSongMonitorThread.start();
 	}
 	@Override
 	protected void onDestroy() {
+		mSongMonitorThread.stopMonitoring();
+		try {
+			mSongMonitorThread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		mMediaPlayer.reset();
 		mMediaPlayer.release();
 		super.onDestroy();
+	}
+	
+	class SongMonitorThread extends Thread{
+		boolean stopMonitoring;
+		public SongMonitorThread(){
+			stopMonitoring = false;
+		}
+		public void stopMonitoring(){
+			stopMonitoring = true;
+		}
+		@Override
+		public void run() {
+			while(!stopMonitoring){
+				if(mMediaPlayer.isPlaying() && mMediaPlayer.getCurrentPosition() > (int)stop){
+					mMediaPlayer.stop();
+					finish();
+				}
+			}
+			super.run();
+		}
+		
 	}
 	
 	

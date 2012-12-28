@@ -82,12 +82,18 @@ public class SongClipsDB extends SQLiteOpenHelper {
 	public Cursor getEntriesForSong(String artist, String title, long duration){
 		return db.query(
 				Tables.SONG_CLIPS,//table, 
-				new String[]{Tables.SongClips.CLIP_NAME, Tables.SongClips.START, Tables.SongClips.STOP},//columns, 
+				new String[]{Tables.SongClips._ID, Tables.SongClips.CLIP_NAME, Tables.SongClips.START, Tables.SongClips.STOP},//columns, 
 				Tables.SongClips.SONG_NAME+"='"+title+"'",//selection, (shitty check for now) 
 				null,//selectionArgs, 
 				null,//groupBy, 
 				null,//having, 
 				null//orderBy
 				);
+	}
+	
+	public void deleteEntry(int _ID){
+		db.delete(Tables.SONG_CLIPS,//table
+				Tables.SongClips._ID +" = ?", //whereclause
+				new String[]{""+_ID});//where args
 	}
 }

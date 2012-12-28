@@ -14,14 +14,57 @@ android:layout_width="fill_parent" android:layout_height="fill_parent">
 	android:layout_width="fill_parent" android:layout_height="wrap_content"
 	android:hint="starting point in ms"
 	android:inputType="number"
+	android:visibility="gone"
 	/>
+    <LinearLayout
+    android:layout_width="fill_parent" android:layout_height="wrap_content"
+    android:orientation="horizontal" android:gravity="center_vertical"
+    android:padding="5dip"
+    >
+    	<TextView 
+    	android:layout_width="wrap_content" android:layout_height="wrap_content"
+    	android:textStyle="bold"
+    	android:text="START - "
+    	android:typeface="monospace"
+    	/> 
+    	<TextView android:id="@+id/start_time"
+    	android:layout_width="wrap_content" android:layout_height="wrap_content"
+    	android:textStyle="bold"
+    	android:text="0:00"
+    	/>
+    	<SeekBar android:id="@+id/start_seek"
+    	android:layout_width="fill_parent" android:layout_height="wrap_content"
+    	android:paddingLeft="8dip" android:paddingRight="8dip"
+    	/>
+    </LinearLayout>
 	<EditText 
 	android:id="@+id/stop"
 	android:layout_width="fill_parent" android:layout_height="wrap_content"
 	android:hint="ending point in ms"
 	android:inputType="number"
+	android:visibility="gone"
 	/>
-	
+	<LinearLayout
+    android:layout_width="fill_parent" android:layout_height="wrap_content"
+    android:orientation="horizontal" android:gravity="center_vertical"
+    android:padding="5dip"
+    >
+    	<TextView 
+    	android:layout_width="wrap_content" android:layout_height="wrap_content"
+    	android:textStyle="bold"
+    	android:text=" STOP - "
+    	android:typeface="monospace"
+    	/> 
+    	<TextView android:id="@+id/stop_time"
+    	android:layout_width="wrap_content" android:layout_height="wrap_content"
+    	android:textStyle="bold"
+    	android:text="0:00"
+    	/>
+    	<SeekBar android:id="@+id/stop_seek"
+    	android:layout_width="fill_parent" android:layout_height="wrap_content"
+    	android:paddingLeft="8dip" android:paddingRight="8dip"
+    	/>
+    </LinearLayout>
 	<Button
 	android:id="@+id/save"
 	android:layout_width="fill_parent" android:layout_height="wrap_content"
