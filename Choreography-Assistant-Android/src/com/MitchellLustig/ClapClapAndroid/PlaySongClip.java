@@ -6,14 +6,17 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 
-import com.MitchellLustig.ClapClapAndroid.R;
 import com.MitchellLustig.ClapClapAndroid.MusicG.DetectorThread;
 import com.MitchellLustig.ClapClapAndroid.MusicG.OnSignalsDetectedListener;
 import com.MitchellLustig.ClapClapAndroid.MusicG.RecorderThread;
 
 public class PlaySongClip extends BaseActivity {
+	ImageButton imageButton;
+	
 	String file;
 	long start, stop;
 	
@@ -27,11 +30,8 @@ public class PlaySongClip extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		TextView text = new TextView(context);
-		text.setText("All Set! Here is how it works! \n1)Clap twice to play clip \n2)Clap twice to restart clip (only after it has ended) \n3)Press back to exit! \n4)blow me, cus i like blowjobs, and i can write what i want!");
-		text.setTextSize(20);
-		
-		setContentView(text);
+		setContentView(R.layout.play_song_clip_layout);
+		imageButton = (ImageButton)findViewById(R.id.button);
 		
 		Intent intent = getIntent();
 		file = intent.getStringExtra("data");
@@ -74,6 +74,51 @@ public class PlaySongClip extends BaseActivity {
 					//detectorThread.stopDetection();
 					detectorThread.setOnSignalsDetectedListener(null);
 					mMediaPlayer.start();
+					imageButton.post(new Runnable() {
+						public void run() {
+							imageButton.setImageResource(R.drawable.stop);
+							imageButton.setOnClickListener(new OnClickListener() {
+								public void onClick(View v){
+									if(mMediaPlayer.isPlaying()){
+										mMediaPlayer.stop();
+									}
+									imageButton.setOnClickListener(null);
+									//make it impossable for clips to restart themslves!
+									try {
+										Thread.sleep(1000);
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									prepareMusicAndListenForClaps();
+								}
+							});
+						}
+					});
+				}
+			});
+			imageButton.setImageResource(R.drawable.play);
+			imageButton.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					detectorThread.setOnSignalsDetectedListener(null);
+					mMediaPlayer.start();
+					imageButton.setImageResource(R.drawable.stop);
+					imageButton.setOnClickListener(new OnClickListener() {
+						public void onClick(View v){
+							if(mMediaPlayer.isPlaying()){
+								mMediaPlayer.stop();
+							}
+							imageButton.setOnClickListener(null);
+							//make it impossable for clips to restart themslves!
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							prepareMusicAndListenForClaps();
+						}
+					});
 				}
 			});
 		} catch (IllegalStateException e) {

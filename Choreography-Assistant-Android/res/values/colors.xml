@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="cc_white">#ffFFff</color>
+	<color name="cc_black">#000000</color>
+	<color name="cc_lblue">#00ccff</color>
+	<color name="cc_lblue_effect">#EEFFff</color>
+</resources>

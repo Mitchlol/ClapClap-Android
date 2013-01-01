@@ -3,23 +3,24 @@ package com.MitchellLustig.ClapClapAndroid;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.MitchellLustig.ClapClapAndroid.R;
+
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 public class SongViewer extends BaseActivity {
 	LinearLayout layout;
@@ -66,26 +67,19 @@ public class SongViewer extends BaseActivity {
 				startActivity(intent);
 			}
 		});
-		list.setOnItemLongClickListener(new OnItemLongClickListener() {
-
-			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id){
-				clipsCursor.moveToPosition(position);
-				int DB_ROW_ID = clipsCursor.getInt(clipsCursor.getColumnIndex(SongClipsDB.Tables.SongClips._ID));
-				songClipsDB.deleteEntry(DB_ROW_ID);
-				updateList();
-				return false;
-			}
-		});
+		
 		
 		listEmptyView = new TextView(context);
 		listEmptyView.setGravity(Gravity.CENTER);
-		listEmptyView.setText("You have not created any clips yet, press \"Menu\" to add a clip!");
+		listEmptyView.setText("You have not created any clips yet, press the + icon at the top to add a clip!");
 		list.setEmptyView(listEmptyView);
 		layout.addView(listEmptyView, new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		
 		setContentView(layout);
 		
 		updateList();
+		
+		
 	}
 	
 	public void updateList(){
@@ -114,13 +108,22 @@ public class SongViewer extends BaseActivity {
 
     	public long getItemId(int position) {return position;}	
 
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView, ViewGroup parent) {
 			cursor.moveToPosition(position);
 			
 			View v = View.inflate(context, R.layout.clip_list_item, null);
 			((TextView)v.findViewById(R.id.title)).setText(cursor.getString(clip_name_index));
 			String timetext = MStoHRBS(cursor.getLong(start_index)) + " - " + MStoHRBS(cursor.getLong(stop_index));
 			((TextView)v.findViewById(R.id.info)).setText(timetext);
+			
+			((ImageView)v.findViewById(R.id.delete)).setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					clipsCursor.moveToPosition(position);
+					int DB_ROW_ID = clipsCursor.getInt(clipsCursor.getColumnIndex(SongClipsDB.Tables.SongClips._ID));
+					songClipsDB.deleteEntry(DB_ROW_ID);
+					updateList();
+				}
+			});
 			
 			return v;
 		}
@@ -129,7 +132,9 @@ public class SongViewer extends BaseActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add("add clip");
+		MenuItem item = menu.add("add clip");
+		item.setIcon(R.drawable.add);
+		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 		return super.onCreateOptionsMenu(menu);
 	}
 

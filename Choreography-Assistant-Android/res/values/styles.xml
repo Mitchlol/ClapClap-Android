@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- theme, contains all my styles and other cosomizations! -->
+    <style name="ClapCLapTheme" parent="@style/Theme.Sherlock">
+		<!-- window styles -->
+		<item name="android:windowBackground">@color/cc_white</item>
+		
+		<!-- widget styles -->
+		<item name="android:actionBarStyle">@style/ClapCLapTheme.ActionBarStyle</item>
+		<item name="actionBarStyle">@style/ClapCLapTheme.ActionBarStyle</item>
+		<item name="android:listViewStyle">@style/ClapCLapTheme.ListViewStyle</item>
+		<item name="android:editTextStyle">@style/ClapCLapTheme.EditTextStyle</item>
+		<item name="android:textViewStyle">@style/ClapCLapTheme.TextViewStyle</item>
+		<item name="android:buttonStyle">@style/ClapCLapTheme.ButtonStyle</item>
+		<item name="android:imageButtonStyle">@style/ClapCLapTheme.ImageButtonStyle</item>
+		<item name="android:seekBarStyle">@style/ClapCLapTheme.SeekBarStyle</item>
+	</style>
+	
+    <!-- text options -->
+    <style name="CC_Text.LBlue.Small" parent="@android:style/TextAppearance">
+		<item name="android:textColor">@color/cc_lblue</item>
+		<item name="android:textSize">13sp</item>
+	</style>
+	<style name="CC_Text.LBlue.Medium" parent="@android:style/TextAppearance">
+		<item name="android:textColor">@color/cc_lblue</item>
+		<item name="android:textSize">16sp</item>
+	</style>
+	<style name="CC_Text.LBlue.Large" parent="@android:style/TextAppearance">
+		<item name="android:textColor">@color/cc_lblue</item>
+		<item name="android:textSize">19sp</item>
+	</style>
+	
+	<style name="CC_Text.Logo" parent="@android:style/TextAppearance">
+		<item name="android:textColor">@color/cc_lblue</item>
+		<item name="android:textSize">19sp</item>
+		<item name="android:textAllCaps">true</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+    
+	
+	<style name="ClapCLapTheme.ActionBarStyle" parent="@style/Widget.Sherlock.Light.ActionBar">
+    	<item name="android:titleTextStyle">@style/CC_Text.Logo</item>
+    	<item name="titleTextStyle">@style/CC_Text.Logo</item>
+    	<item name="android:subtitleTextStyle">@style/CC_Text.LBlue.Small</item>
+    	<item name="subtitleTextStyle">@style/CC_Text.LBlue.Small</item>
+    	<item name="android:background">@drawable/actionbar_bg</item>
+    	<item name="background">@drawable/actionbar_bg</item>
+ 	</style>
+ 	
+	<style name="ClapCLapTheme.ListViewStyle" parent="@android:style/Widget.ListView">
+ 		<item name="android:divider">@drawable/divider</item>
+ 		<item name="android:cacheColorHint">@color/cc_lblue_effect</item>
+	</style>
+	
+	<style name="ClapCLapTheme.EditTextStyle" parent="@android:style/Widget.EditText">
+ 		<item name="android:background">@drawable/input_box</item>
+ 		<item name="android:textColor">@color/cc_lblue</item>
+ 		<item name="android:textColorHint">@color/cc_lblue</item>
+	</style>
+	
+	<style name="ClapCLapTheme.TextViewStyle" parent="@android:style/Widget.TextView">
+ 		<item name="android:textAppearance">@style/CC_Text.LBlue.Medium</item>
+	</style>
+	
+	<style name="ClapCLapTheme.ButtonStyle" parent="@android:style/Widget.Button">
+ 		<item name="android:background">@drawable/button</item>
+ 		<item name="android:textColor">@color/cc_lblue</item>
+ 		<item name="android:textSize">16sp</item>
+ 		<item name="android:padding">5dip</item>
+	</style>
+	
+	<style name="ClapCLapTheme.ImageButtonStyle" parent="@android:style/Widget.ImageButton">
+ 		<item name="android:background">@drawable/button</item>
+ 		<item name="android:textColor">@color/cc_lblue</item>
+ 		<item name="android:textSize">16sp</item>
+ 		<item name="android:padding">5dip</item>
+	</style>
+	
+	<style name="ClapCLapTheme.SeekBarStyle" parent="@android:style/Widget.SeekBar">
+ 		<item name="android:progressDrawable">@drawable/progress_horizontal</item> 
+	    <item name="android:thumb">@drawable/seek_thumb</item> 
+ 		<item name="android:minHeight">15dip</item> 
+  		<item name="android:maxHeight">15dip</item> 
+	    <item name="android:thumbOffset">0dip</item>
+	</style>
+ 	
+</resources>

@@ -1,23 +1,32 @@
 package com.MitchellLustig.ClapClapAndroid;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import com.MitchellLustig.ClapClapAndroid.R;
 
-public class BaseActivity extends Activity {
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+
+public class BaseActivity extends SherlockActivity {
 	public static final String TAG = "NOELOL";
 	
 	protected Context context;
 	protected Handler handler;
+	
+	ActionBar actionBar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		context = this;
 		handler = new Handler();
+		
+		actionBar = getSupportActionBar();
+		actionBar.setTitle(R.string.app_name);
+		actionBar.setLogo(R.drawable.icon);
+		//actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_bg));
+		actionBar.show();
 	}
 	
 	

@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.MitchellLustig.ClapClapAndroid"
-      android:versionCode="1"
-      android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="7" />
-    
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+package="com.MitchellLustig.ClapClapAndroid"
+android:versionCode="1"
+android:versionName="1.0">
 
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name="com.MitchellLustig.ClapClapAndroid.SongPicker"
-                  android:label="@string/app_name">
-            <intent-filter>
+	<uses-sdk android:minSdkVersion="7" />
+	<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+	<application 
+	android:icon="@drawable/icon" 
+	android:label="@string/app_name"
+	>
+    	<activity 
+    	android:name="com.MitchellLustig.ClapClapAndroid.SongListActivity"
+    	android:theme="@style/ClapCLapTheme"
+        android:label="@string/app_name">
+        	<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         
-         <activity android:name="com.MitchellLustig.ClapClapAndroid.SongViewer"
-                  android:label="@string/app_name">
+        <activity 
+        android:name="com.MitchellLustig.ClapClapAndroid.SongViewer"
+        android:theme="@style/ClapCLapTheme"
+        android:label="@string/app_name">
         </activity>
         
-        <activity android:name="com.MitchellLustig.ClapClapAndroid.AddClip"
-                  android:label="@string/app_name">
+        <activity 
+        android:name="com.MitchellLustig.ClapClapAndroid.AddClip"
+        android:theme="@style/ClapCLapTheme"
+        android:label="@string/app_name">
         </activity>
         
-        <activity android:name="com.MitchellLustig.ClapClapAndroid.PlaySongClip"
-                  android:label="@string/app_name">
+        <activity 
+        android:name="com.MitchellLustig.ClapClapAndroid.PlaySongClip"
+        android:theme="@style/ClapCLapTheme"
+        android:label="@string/app_name">
         </activity>
 
     </application>

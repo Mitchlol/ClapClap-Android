@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<TextView
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	style="@style/CC_Text.LBlue.Large"
+	android:gravity="center_horizontal"
+	android:text="@string/howitworks"
+	/>
+	<TextView
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:text="1)Clap twice, or press play to start the song"
+	/> 
+	<TextView
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:text="2)Press stop to stop the song"
+	/> 
+	<TextView
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:text="3)Repeat and smile"
+	/> 
+	<TextView
+	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:text="4)blow me"
+	/> 
+	
+	<ImageButton android:id="@+id/button"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:src="@drawable/play" android:scaleType="fitCenter"
+	android:layout_margin="25dip"
+	/>
+</LinearLayout>
